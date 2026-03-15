@@ -27,6 +27,6 @@ ${PATCH_MARKER}
 [class*="message_"][class*="userMessageContainer_"] { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
 [class*="root_"] ol, [class*="root_"] ul { direction: rtl !important; }
 [class*="root_"] table { direction: rtl !important; margin-left: auto !important; margin-right: 0 !important; }
-[class*="root_"] li, [class*="root_"] li p, [class*="root_"] li span, [class*="root_"] li strong, [class*="root_"] li em { direction: rtl !important; unicode-bidi: embed !important; text-align: right !important; }
+[class*="root_"] p, [class*="root_"] p strong, [class*="root_"] p em, [class*="root_"] p span, [class*="root_"] li, [class*="root_"] li p, [class*="root_"] li span, [class*="root_"] li strong, [class*="root_"] li em, [class*="root_"] h1, [class*="root_"] h2, [class*="root_"] h3, [class*="root_"] h4, [class*="root_"] h5, [class*="root_"] h6, [class*="root_"] blockquote { direction: rtl !important; unicode-bidi: isolate !important; text-align: right !important; }
 pre, code, pre *, code *, [class*="codeBlockWrapper_"], [class*="codeBlockWrapper_"] pre, [class*="bashCommand_"], .monaco-editor, .monaco-editor * { direction: ltr !important; unicode-bidi: normal !important; text-align: left !important; }
 `;
