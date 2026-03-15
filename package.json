@@ -1,0 +1,67 @@
+{
+  "name": "rtl-for-claude-code",
+  "displayName": "RTL for Claude Code in VS",
+  "description": "Adds RTL (right-to-left) support for Hebrew, Arabic, and Persian in Claude Code's chat interface in VS Code.",
+  "version": "0.1.2",
+  "publisher": "adir-alon",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "rtl",
+    "hebrew",
+    "arabic",
+    "persian",
+    "claude",
+    "claude-code",
+    "right-to-left",
+    "bidi"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "rtl-claude.apply",
+        "title": "RTL for Claude Code: Apply Patch"
+      },
+      {
+        "command": "rtl-claude.remove",
+        "title": "RTL for Claude Code: Remove Patch"
+      },
+      {
+        "command": "rtl-claude.status",
+        "title": "RTL for Claude Code: Check Status"
+      }
+    ],
+    "configuration": {
+      "title": "RTL for Claude Code",
+      "properties": {
+        "rtlForClaudeCode.autoApply": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically apply RTL patch on startup and after Claude Code updates."
+        }
+      }
+    }
+  },
+  "sponsor": {
+    "url": "https://paypal.me/adiralon10"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}
