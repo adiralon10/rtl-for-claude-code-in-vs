@@ -30,6 +30,16 @@ export function deactivate(): void {
     fileWatcher?.dispose();
     fileWatcher = undefined;
     disposeStatusBar();
+
+    // Restore original files on deactivation/uninstall
+    try {
+        const paths = findClaudeCode();
+        if (paths) {
+            removePatch(paths);
+        }
+    } catch {
+        // Best effort - don't block deactivation
+    }
 }
 
 /**
