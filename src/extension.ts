@@ -30,16 +30,8 @@ export function deactivate(): void {
     fileWatcher?.dispose();
     fileWatcher = undefined;
     disposeStatusBar();
-
-    // Restore original files on deactivation/uninstall
-    try {
-        const paths = findClaudeCode();
-        if (paths) {
-            removePatch(paths);
-        }
-    } catch {
-        // Best effort - don't block deactivation
-    }
+    // Patch cleanup is handled by vscode:uninstall script, not here.
+    // deactivate() runs on every reload - removing patch here would cause an infinite loop.
 }
 
 /**
@@ -72,11 +64,9 @@ async function refreshState(): Promise<void> {
     if (autoApply) {
         try {
             const applied = await applyPatch(paths);
+            updateStatusBar('applied');
             if (applied) {
-                updateStatusBar('applied');
-                promptReload('RTL for Claude Code in VS is active.');
-            } else {
-                updateStatusBar('applied');
+                promptReload('RTL for Claude Code in VS: Patch applied (JS + CSS).');
             }
         } catch (err: any) {
             updateStatusBar('not-applied');
