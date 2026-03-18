@@ -20,11 +20,22 @@ ${PATCH_MARKER}
     }
   }
   function applyRTL(){
-    // Input fields - always RTL (user types Hebrew)
+    // Input fields - detect direction from content
     document.querySelectorAll('[contenteditable], [class*="mentionMirror"]').forEach(function(el){
-      el.setAttribute('dir','rtl');
-      el.style.setProperty('direction','rtl','important');
-      el.style.setProperty('text-align','right','important');
+      var txt=el.textContent||'';
+      if(!txt.trim()){
+        el.setAttribute('dir','auto');
+        el.style.setProperty('direction','rtl','important');
+        el.style.setProperty('text-align','right','important');
+      } else if(heRe.test(txt)){
+        el.setAttribute('dir','rtl');
+        el.style.setProperty('direction','rtl','important');
+        el.style.setProperty('text-align','right','important');
+      } else {
+        el.setAttribute('dir','ltr');
+        el.style.setProperty('direction','ltr','important');
+        el.style.setProperty('text-align','left','important');
+      }
     });
     // User message bubbles
     document.querySelectorAll('[class*="userMessage_"]').forEach(function(el){

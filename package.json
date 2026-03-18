@@ -2,7 +2,7 @@
   "name": "rtl-for-claude-code",
   "displayName": "RTL for Claude Code in VS",
   "description": "Adds RTL (right-to-left) support for Hebrew, Arabic, and Persian in Claude Code's chat interface in VS Code.",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "publisher": "adir-alon",
   "license": "MIT",
   "engines": {
