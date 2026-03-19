@@ -37,10 +37,26 @@ ${PATCH_MARKER}
         el.style.setProperty('text-align','left','important');
       }
     });
-    // User message bubbles
+    // User message bubbles - smart direction
     document.querySelectorAll('[class*="userMessage_"]').forEach(function(el){
       if(el.className.indexOf('Container')>-1||el.className.indexOf('Attachments')>-1)return;
-      el.setAttribute('dir','auto');
+      if(hasRTL(el)){
+        el.setAttribute('dir','rtl');
+      } else {
+        el.setAttribute('dir','ltr');
+      }
+    });
+    // User message containers - position based on content
+    document.querySelectorAll('[class*="userMessageContainer_"]').forEach(function(el){
+      if(hasRTL(el)){
+        el.style.setProperty('text-align','right','important');
+        el.style.setProperty('margin-left','auto','important');
+        el.style.setProperty('margin-right','0','important');
+      } else {
+        el.style.setProperty('text-align','left','important');
+        el.style.setProperty('margin-left','0','important');
+        el.style.setProperty('margin-right','auto','important');
+      }
     });
     // Response elements - detect per element
     var sel='[class*="root_"] p,[class*="root_"] li,[class*="root_"] h1,[class*="root_"] h2,[class*="root_"] h3,[class*="root_"] h4,[class*="root_"] h5,[class*="root_"] h6,[class*="root_"] blockquote,[class*="root_"] td,[class*="root_"] th,[class*="toolSummary_"],[class*="toolBodyPlainText_"],[class*="toolBodyRowContent_"],[class*="timelineMessage_"],[class*="thinkingContent_"],[class*="thinkingSummary_"],[class*="permissionRequestHeader_"]';
@@ -67,6 +83,5 @@ ${PATCH_MARKER}
 
 export const CSS_PATCH = `
 ${PATCH_MARKER}
-[class*="message_"][class*="userMessageContainer_"] { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
 pre, code, pre *, code *, [class*="codeBlockWrapper_"], [class*="codeBlockWrapper_"] pre, [class*="bashCommand_"], .monaco-editor, .monaco-editor * { direction: ltr !important; unicode-bidi: normal !important; text-align: left !important; }
 `;
